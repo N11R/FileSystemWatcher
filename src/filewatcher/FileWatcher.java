@@ -1,6 +1,7 @@
 package filewatcher;
 import java.io.IOException;
 import java.nio.file.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 public class FileWatcher {
@@ -63,7 +64,8 @@ public class FileWatcher {
                             fileName,
                             extensionFilter,
                             directoryPath,
-                            activityType
+                            activityType,
+                            LocalDateTime.now()  // pass the time here
                     );
                     pendingEvents.add(fe);
                 }
