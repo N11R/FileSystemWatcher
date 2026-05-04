@@ -13,7 +13,10 @@ why the timestamp field needed to be LocalDateTime instead of a String
 was a good learning moment it matters for database queries and date 
 comparisons later. Writing JUnit tests for FileEvent was new to me but 
 helped me catch issues like checking the wrong expected values in 
-assertEquals. YouTrack was also new  creating user stories, estimating 
-hours, and logging time took a while to get comfortable with.
+assertEquals.
 
-Mariam Hussein: 
+Mariam Hussein: For this iteration, I was responsible for setting up the 
+YouTrack project for our team. I created the project, added team members, 
+configured the agile board, and created the initial user stories for our 
+File System Watcher. I shared what I learned about YouTrack with my 
+teammate so we could both use it effectively.
