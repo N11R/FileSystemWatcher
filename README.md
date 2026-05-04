@@ -19,4 +19,4 @@ Mariam Hussein: For this iteration, I was responsible for setting up the
 YouTrack project for our team. I created the project, added team members, 
 configured the agile board, and created the initial user stories for our 
 File System Watcher. I shared what I learned about YouTrack with my 
-teammate so we could both use it effectively.
+teammate so we could both use it effectively. I also implemented the filewatcher class and ReportGenarator class. 
