@@ -262,7 +262,6 @@ public class DatabaseHandler {
 
     /**
      * Converts a ResultSet into a list of FileEvent objects.
-     *
      * @param rs the ResultSet to process
      * @return a list of FileEvents extracted from the result set
      * @throws SQLException if a database access error occurs
