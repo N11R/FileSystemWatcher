@@ -39,4 +39,26 @@ Mariam Hussein: During this iteration,I implemented MainForm.java: built the mai
 application information, with proper open/close behavior tied to the menu.
 I learned and began integrating SQL: studied database fundamentals and set up
 initial database connectivity to support future data-driven features. No major blocking issues were encountered with the UI components.
+
+
+
+
+
+
+
+--Third Iteration--
+
+Team Members:
+- Mariam Hussein (mah01@uw.edu)
+- Nasra Hussein (nasraali@uw.edu)
+
+  IDE Used: IntelliJ IDEA
+
+
+  Nasra Hussein:
+
+
+  Mariam Hussein:
+  
+
  
