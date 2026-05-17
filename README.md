@@ -58,7 +58,10 @@ Team Members:
   Nasra Hussein:
 
 
-  Mariam Hussein:
+  Mariam Hussein:This iteration I focused on writing JUnit 5 unit tests for two classes  ReportGenerator and FileWatcher.
+  ReportGeneratorTest
+  The ReportGenerator class has three methods: buildHeader, formatToTable, and exportToCsv. For buildHeader, four tests were written to       verify that the query type, query parameter, and export date label all appear in the output, and that the method still works correctly      when empty strings are passed in as an edge case. For formatToTable, three tests were written to confirm that an empty list returns an      empty string, one event produces one line, and multiple events produce the correct number of lines. For exportToCsv, four tests were        written to verify that the file is actually created on disk, the first line is the correct CSV header, one event produces a header plus     one data row, and an empty list produces only the header. This gave a total of 11 tests for ReportGenerator.
+  FileWatcherTest
+  The FileWatcher class has four public methods: getPendingEvents, hasUnsavedEvents, stopMonitoring, and startMonitoring. A test was          written for each method. For getPendingEvents and hasUnsavedEvents, the tests confirm that a brand new FileWatcher starts with an empty     list and returns false for unsaved events. For stopMonitoring, the test verifies that calling it does not throw an exception. For           startMonitoring, the test uses a real temporary directory, starts the watcher on a background thread, creates a .txt file, and confirms     that the event was detected and added to the pending events list. This gave a total of 4 tests for FileWatcher.
   
-
- 
+   
