@@ -55,7 +55,9 @@ Team Members:
   IDE Used: IntelliJ IDEA
 
 
-  Nasra Hussein:
+  Nasra Hussein: QueryEngine: Implemented the QueryEngine orchestration layer that coordinates DatabaseHandler, ReportGenerator, and EmailService. Added four query methods: queryByExtension(), queryByDateRange(), queryByActivity(), and queryByPath(), each caching results and metadata for subsequent export or email operations. Implemented input validation with IllegalArgumentException for null or blank parameters, date range validation ensuring start date is before end date, and automatic wrapping of path search terms in SQL LIKE wildcards. Added saveResultsToCsv() for CSV export with automatic .csv extension appending, emailResults() for sending reports, and clearDatabase() which also resets the cache. Implements FR-3.1 through FR-3.8, FR-4.1 through FR-4.8, and FR-5.1 through FR-5.8.
+JUnit Tests:
+Wrote comprehensive JUnit 5 tests for DatabaseHandler (22 tests) and QueryEngine (27 tests). DatabaseHandler tests cover connection management, table creation called twice without error, single and batch event saving with field verification, all four fetch methods with match and no-match scenarios, clear database, and edge cases including null extensions and special characters in file names. QueryEngine tests cover all four query methods with match and no-match cases, input validation for null, blank, and invalid date ranges, result caching behavior across multiple queries, CSV export including file creation and automatic extension appending, database clearing with cache reset, and email error handling when EmailService is null. Each test uses a fresh temporary database deleted after completion to ensure isolation.
 
 
   Mariam Hussein:This iteration I focused on writing JUnit 5 unit tests for two classes  ReportGenerator and FileWatcher.
