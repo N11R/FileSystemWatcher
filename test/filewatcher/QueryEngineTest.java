@@ -92,9 +92,7 @@ class QueryEngineTest {
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // CONSTRUCTOR TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests that the constructor throws when DatabaseHandler is null.
@@ -116,9 +114,7 @@ class QueryEngineTest {
                 "Should throw for null ReportGenerator.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // QUERY BY EXTENSION TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests queryByExtension returns matching events.
@@ -160,9 +156,7 @@ class QueryEngineTest {
                 "Should throw for blank extension.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // QUERY BY DATE RANGE TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests queryByDateRange returns events within range.
@@ -220,9 +214,7 @@ class QueryEngineTest {
                 "Should throw for null end date.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // QUERY BY ACTIVITY TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests queryByActivity returns matching events.
@@ -254,9 +246,7 @@ class QueryEngineTest {
                 "Should throw for null activity.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // QUERY BY PATH TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests queryByPath returns matching events.
@@ -288,9 +278,7 @@ class QueryEngineTest {
                 "Should throw for null path.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // CACHE TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests that getLastQueryResults returns cached results.
@@ -341,9 +329,7 @@ class QueryEngineTest {
                 "Initial meta should be empty string.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // CSV EXPORT TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests saveResultsToCsv creates a file.
@@ -390,9 +376,7 @@ class QueryEngineTest {
                 "Should throw for null file name.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // CLEAR DATABASE TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests clearDatabase removes all records.
@@ -425,9 +409,7 @@ class QueryEngineTest {
                 "Meta should be empty after clearing database.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // EMAIL TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests emailResults returns false when EmailService is null.

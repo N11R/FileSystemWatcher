@@ -81,9 +81,7 @@ class DatabaseHandlerTest {
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // CONNECTION TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests that openConnection returns true on success.
@@ -106,9 +104,7 @@ class DatabaseHandlerTest {
         dbHandler.closeConnection();
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // CREATE TABLE TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests that createTableIfNotExists can be called multiple times
@@ -123,9 +119,7 @@ class DatabaseHandlerTest {
         assertNotNull(events, "fetchAll should return a non-null list.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // SAVE EVENT TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests saving a single event returns true.
@@ -169,9 +163,7 @@ class DatabaseHandlerTest {
                 "Timestamp should match.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // SAVE EVENTS (BATCH) TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests saving multiple events at once.
@@ -205,9 +197,7 @@ class DatabaseHandlerTest {
                 "saveEvents with empty list should return 0.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // FETCH ALL TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests fetchAll on an empty database returns empty list.
@@ -220,9 +210,7 @@ class DatabaseHandlerTest {
                 "fetchAll should return empty list for empty database.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // FETCH BY EXTENSION TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests querying by extension returns matching events.
@@ -262,9 +250,7 @@ class DatabaseHandlerTest {
                 "Should find 2 .txt events.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // FETCH BY DATE RANGE TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests querying by date range returns events within range.
@@ -292,9 +278,7 @@ class DatabaseHandlerTest {
                 "Should return empty list for date range with no events.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // FETCH BY ACTIVITY TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests querying by activity type returns matching events.
@@ -318,9 +302,7 @@ class DatabaseHandlerTest {
                 "Should return empty list for RENAMED when none exist.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // FETCH BY PATH TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests querying by path returns matching events.
@@ -344,9 +326,7 @@ class DatabaseHandlerTest {
                 "Should return empty for non-matching path.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // CLEAR DATABASE TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests clearing the database removes all records.
@@ -373,9 +353,7 @@ class DatabaseHandlerTest {
                 "clearDatabase on empty DB should return true.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // EDGE CASE TESTS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Tests saving an event with a null extension (file has no extension).
@@ -423,9 +401,7 @@ class DatabaseHandlerTest {
                 "Should find 1 DELETED event.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // HELPER METHODS
-    // ═══════════════════════════════════════════════════════════════
+
 
     /**
      * Creates a list of three diverse test FileEvents.
