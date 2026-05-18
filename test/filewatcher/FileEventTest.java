@@ -56,8 +56,7 @@ class FileEventTest {
     public void testToString() {
         LocalDateTime time = LocalDateTime.of(2026, 4, 28, 14, 30, 0);
         FileEvent event = new FileEvent("report.docx", "docx", "C:/docs/report.docx", "Created", time );
-        assertEquals("[Created} report.docx at 2026-04-28T14:30", event.toString());
-    }
+        assertEquals("[Created] report.docx at 2026-04-28T14:30", event.toString());    }
 
 
 }
