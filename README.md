@@ -81,8 +81,8 @@ Team Members:
 
   Mariam Hussein: Created EmailService.java : handles Gmail SMTP authentication and email delivery, including CSV file attachment, subject/body generation, and graceful error handling for missing credentials or network failures.
 Created EmailServiceTest.java : JUnit 5 test class covering constructor behavior, input validation (null/empty/blank recipient, null/missing attachment), and graceful failure when no credentials are configured.
-Updated MainForm.java — add a brief note here about what you changed, e.g. "added email send button and wired it to EmailService
-Updated Main.java — add a brief note here, e.g. "added SQLite driver loading on startup
+Updated MainForm.java — added email send button and wired it to EmailService
+Updated Main.java — added SQLite driver loading on startup
 
   
    
