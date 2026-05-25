@@ -39,6 +39,7 @@ public class MainForm extends JFrame {
         JList<String> lstEvents = new JList<>(listModel);
         cmbExtension = new JComboBox<>();
         cmbExtension.setEditable(true);
+        cmbExtension.addItem("All Files");
         cmbExtension.addItem(".txt");
         cmbExtension.addItem(".java");
         cmbExtension.addItem(".pdf");
