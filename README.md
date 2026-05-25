@@ -65,5 +65,24 @@ Wrote comprehensive JUnit 5 tests for DatabaseHandler (22 tests) and QueryEngine
 
 
   The FileWatcher class has four public methods: getPendingEvents, hasUnsavedEvents, stopMonitoring, and startMonitoring. A test was          written for each method. For getPendingEvents and hasUnsavedEvents, the tests confirm that a brand new FileWatcher starts with an empty     list and returns false for unsaved events. For stopMonitoring, the test verifies that calling it does not throw an exception. For           startMonitoring, the test uses a real temporary directory, starts the watcher on a background thread, creates a .txt file, and confirms     that the event was detected and added to the pending events list. This gave a total of 4 tests for FileWatcher.
+
+
+
+  
+--Fourth Iteration--
+
+Team Members:
+- Mariam Hussein (mah01@uw.edu)
+- Nasra Hussein (nasraali@uw.edu)
+
+  IDE Used: IntelliJ IDEA
+
+  Nasra Hussein:
+
+  Mariam Hussein: Created EmailService.java : handles Gmail SMTP authentication and email delivery, including CSV file attachment, subject/body generation, and graceful error handling for missing credentials or network failures.
+Created EmailServiceTest.java : JUnit 5 test class covering constructor behavior, input validation (null/empty/blank recipient, null/missing attachment), and graceful failure when no credentials are configured.
+Updated MainForm.java — add a brief note here about what you changed, e.g. "added email send button and wired it to EmailService
+Updated Main.java — add a brief note here, e.g. "added SQLite driver loading on startup
+
   
    
