@@ -78,6 +78,10 @@ Team Members:
   IDE Used: IntelliJ IDEA
 
   Nasra Hussein:
+* Built QueryForm.java: the database query GUI window using Java Swing with a JTabbedPane layout containing four tabs for querying by extension, date range, activity type, and path. Includes a results JTable with non-editable model, and action buttons for Export to CSV, Email Results, Clear Database, and Return to Main. All event handlers validate user input and show error dialogs. Full Javadoc on every class, field, and method with SRS traceability references (FR-3.1 through FR-5.x, Section 4.1.2).
+* Wrote QueryFormTest.java: JUnit 5 test class with 5 tests covering constructor null rejection, valid construction, window title verification, visibility after construction, and safe dispose. Uses @BeforeEach with a real DatabaseHandler and test data, and @AfterEach with window disposal and temp database cleanup.
+
+
 
   Mariam Hussein: Created EmailService.java : handles Gmail SMTP authentication and email delivery, including CSV file attachment, subject/body generation, and graceful error handling for missing credentials or network failures.
 Created EmailServiceTest.java : JUnit 5 test class covering constructor behavior, input validation (null/empty/blank recipient, null/missing attachment), and graceful failure when no credentials are configured.
