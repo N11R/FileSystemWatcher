@@ -58,9 +58,7 @@ public class EmailServiceTest {
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════
     // CONSTRUCTOR TESTS
-    // ═══════════════════════════════════════════════════════════════
 
     /**
      * Tests that EmailService can be instantiated without throwing.
@@ -83,9 +81,9 @@ public class EmailServiceTest {
                 "A second EmailService instance should be created successfully.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
+    //
     // sendEmail() INPUT VALIDATION TESTS
-    // ═══════════════════════════════════════════════════════════════
+    //
 
     /**
      * Tests that sendEmail returns false when recipient is null.
@@ -174,9 +172,9 @@ public class EmailServiceTest {
                 "sendEmail should never throw — errors should be caught internally.");
     }
 
-    // ═══════════════════════════════════════════════════════════════
+    // 
     // ATTACHMENT FILE TESTS
-    // ═══════════════════════════════════════════════════════════════
+    // 
 
     /**
      * Tests that the temporary CSV file used in tests actually exists.
