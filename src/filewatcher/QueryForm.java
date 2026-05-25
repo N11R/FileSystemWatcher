@@ -1,0 +1,597 @@
+package filewatcher;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+/**
+ * QueryForm is the database query window for the File System Watcher application.
+ * It provides a graphical interface that lets the user search stored file events
+ * by extension, date range, activity type, or file path, and then optionally
+ * export the results to CSV or email them as an attachment.
+ *
+ * <p>The form is opened from {@link MainForm} when the user clicks the
+ * "Query" toolbar button or selects Database &gt; Query from the menu bar.
+ * It delegates all query logic, CSV generation, and email delivery to a
+ * {@link QueryEngine} instance, keeping this class focused purely on
+ * presentation and user interaction.</p>
+ *
+ * <h3>Layout</h3>
+ * The window is divided into three vertical sections:
+ * <ol>
+ *   <li><b>Query Controls (top)</b> — four tabbed panels for each query type,
+ *       each with its own input fields and a "Run Query" button.</li>
+ *   <li><b>Results Table (center)</b> — a scrollable {@link JTable} that
+ *       displays matching {@link FileEvent} records with columns for
+ *       File Name, Extension, Path, Activity, and Date/Time.</li>
+ *   <li><b>Action Bar (bottom)</b> — buttons for Export to CSV, Email Results,
+ *       Clear Database, and Return to Main.</li>
+ * </ol>
+ *
+ * <p><b>SRS Coverage:</b></p>
+ * <ul>
+ *   <li>FR-3.1 — Query by extension</li>
+ *   <li>FR-3.2 — Query by date range</li>
+ *   <li>FR-3.3 — Query by activity type</li>
+ *   <li>FR-3.4 — Query by path</li>
+ *   <li>FR-3.8 — Clear database</li>
+ *   <li>FR-4.x — Export to CSV</li>
+ *   <li>FR-5.x — Email CSV report</li>
+ *   <li>Section 4.1.2 — QueryForm UI specification</li>
+ * </ul>
+ *
+ * @author  File System Watcher Team
+ * @version 1.0
+ * @see     QueryEngine
+ * @see     MainForm
+ * @see     FileEvent
+ */
+public class QueryForm extends JFrame {
+
+    // ─────────────────────────────────────────────────────────────
+    //  CONSTANTS
+    // ─────────────────────────────────────────────────────────────
+
+    /** Column headers shown in the results table, matching the SRS specification. */
+    private static final String[] TABLE_COLUMNS = {
+            "File Name", "Extension", "Path", "Activity", "Date/Time"
+    };
+
+    /** Pre-populated file extensions offered in the extension combo box. */
+    private static final String[] DEFAULT_EXTENSIONS = {
+            ".txt", ".java", ".pdf", ".png", ".docx"
+    };
+
+    /** Activity types available for the activity query combo box. */
+    private static final String[] ACTIVITY_TYPES = {
+            "CREATED", "MODIFIED", "DELETED", "RENAMED"
+    };
+
+    /** Standard date-time display format used when rendering timestamps in the table. */
+    private static final DateTimeFormatter DISPLAY_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    // ─────────────────────────────────────────────────────────────
+    //  GUI COMPONENTS — Query Inputs
+    // ─────────────────────────────────────────────────────────────
+
+    /** Dropdown listing common extensions; the user can also type a custom one. */
+    private final JComboBox<String> cmbExtension;
+
+    /** Text field where the user enters a partial or full directory path to search. */
+    private final JTextField txtPath;
+
+    /** Spinner for choosing the start date of a date-range query. */
+    private final JSpinner spnStartDate;
+
+    /** Spinner for choosing the end date of a date-range query. */
+    private final JSpinner spnEndDate;
+
+    /** Dropdown listing the four supported activity types (created/modified/deleted/renamed). */
+    private final JComboBox<String> cmbActivity;
+
+    // ─────────────────────────────────────────────────────────────
+    //  GUI COMPONENTS — Results & Actions
+    // ─────────────────────────────────────────────────────────────
+
+    /** The table model backing the results grid; cleared and repopulated after each query. */
+    private final DefaultTableModel tableModel;
+
+    /** Export button — enabled only after a query returns at least one result. */
+    private final JButton btnExportCsv;
+
+    /** Email button — enabled only after a CSV file has been successfully generated. */
+    private final JButton btnEmailResults;
+
+    // ─────────────────────────────────────────────────────────────
+    //  BUSINESS LOGIC
+    // ─────────────────────────────────────────────────────────────
+
+    /** Orchestrates queries, CSV export, and email; injected via the constructor. */
+    private final QueryEngine queryEngine;
+
+    /**
+     * Holds the most recently exported CSV file so the email button can attach it.
+     * Set to {@code null} until the user successfully exports results.
+     */
+    private File lastExportedCsv;
+
+    // ═════════════════════════════════════════════════════════════
+    //  CONSTRUCTOR
+    // ═════════════════════════════════════════════════════════════
+
+    /**
+     * Creates and displays the QueryForm window.
+     *
+     * <p>The form takes ownership of the provided {@link QueryEngine} for
+     * the duration of its lifecycle.  It builds the full Swing UI, wires
+     * up all event listeners, and makes itself visible on screen.</p>
+     *
+     * @param engine the {@link QueryEngine} that this form will use for
+     *               querying, exporting, and emailing results.
+     *               Must not be {@code null}.
+     * @throws IllegalArgumentException if {@code engine} is {@code null}
+     */
+    public QueryForm(final QueryEngine engine) {
+        if (engine == null) {
+            throw new IllegalArgumentException("QueryEngine cannot be null.");
+        }
+        this.queryEngine = engine;
+        this.lastExportedCsv = null;
+
+        // --- Window setup ---
+        setTitle("File System Watcher — Query Database");
+        setSize(850, 600);
+        setMinimumSize(new Dimension(700, 450));
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BorderLayout(10, 10));
+
+        // --- Initialize all input components ---
+        cmbExtension = createExtensionComboBox();
+        txtPath = new JTextField(20);
+        spnStartDate = createDateSpinner();
+        spnEndDate = createDateSpinner();
+        cmbActivity = new JComboBox<>(ACTIVITY_TYPES);
+
+        // --- Build the results table with a non-editable model ---
+        tableModel = new DefaultTableModel(TABLE_COLUMNS, 0) {
+            @Override
+            public boolean isCellEditable(final int row, final int column) {
+                // Prevent accidental in-table editing; this is a read-only view.
+                return false;
+            }
+        };
+        JTable resultsTable = new JTable(tableModel);
+        resultsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        resultsTable.getTableHeader().setReorderingAllowed(false);
+
+        // --- Action buttons along the bottom ---
+        btnExportCsv = new JButton("Export to CSV");
+        btnEmailResults = new JButton("Email Results");
+        JButton btnClearDb = new JButton("Clear Database");
+        JButton btnReturn = new JButton("Return to Main");
+
+        // Disable export and email until the user actually runs a query
+        btnExportCsv.setEnabled(false);
+        btnEmailResults.setEnabled(false);
+
+        // --- Assemble the three main sections ---
+        add(buildQueryPanel(), BorderLayout.NORTH);
+        add(new JScrollPane(resultsTable), BorderLayout.CENTER);
+        add(buildActionPanel(btnExportCsv, btnEmailResults, btnClearDb, btnReturn),
+                BorderLayout.SOUTH);
+
+        // --- Wire up action-bar listeners ---
+        btnExportCsv.addActionListener(e -> onExportCsvClicked());
+        btnEmailResults.addActionListener(e -> onEmailResultsClicked());
+        btnClearDb.addActionListener(e -> onClearDatabaseClicked());
+        btnReturn.addActionListener(e -> dispose());
+
+        // Closing the window should not terminate the whole application,
+        // but we want to clean up nicely.
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(final WindowEvent e) {
+                onReturnToMainClicked();
+            }
+        });
+
+        // Center the form on screen and show it
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    //  PANEL BUILDERS — keep the constructor readable
+    // ═════════════════════════════════════════════════════════════
+
+    /**
+     * Builds the top section of the form: a {@link JTabbedPane} with one tab
+     * per query type (Extension, Date Range, Activity, Path).
+     *
+     * <p>Each tab contains the relevant input controls and a "Run Query"
+     * button.  This tabbed layout prevents the form from feeling cluttered
+     * while still exposing every query type on a single screen.</p>
+     *
+     * @return a fully wired panel ready to be added to the form
+     */
+    private JTabbedPane buildQueryPanel() {
+        JTabbedPane tabs = new JTabbedPane();
+
+        // --- Tab 1: Query by Extension ---
+        JPanel extPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        extPanel.add(new JLabel("Extension:"));
+        extPanel.add(cmbExtension);
+        JButton btnQueryExt = new JButton("Run Query");
+        btnQueryExt.addActionListener(e -> onExtensionQueryClicked());
+        extPanel.add(btnQueryExt);
+        tabs.addTab("By Extension", extPanel);
+
+        // --- Tab 2: Query by Date Range ---
+        JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        datePanel.add(new JLabel("Start:"));
+        datePanel.add(spnStartDate);
+        datePanel.add(new JLabel("End:"));
+        datePanel.add(spnEndDate);
+        JButton btnQueryDate = new JButton("Run Query");
+        btnQueryDate.addActionListener(e -> onDateRangeQueryClicked());
+        datePanel.add(btnQueryDate);
+        tabs.addTab("By Date Range", datePanel);
+
+        // --- Tab 3: Query by Activity ---
+        JPanel actPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        actPanel.add(new JLabel("Activity:"));
+        actPanel.add(cmbActivity);
+        JButton btnQueryAct = new JButton("Run Query");
+        btnQueryAct.addActionListener(e -> onActivityQueryClicked());
+        actPanel.add(btnQueryAct);
+        tabs.addTab("By Activity", actPanel);
+
+        // --- Tab 4: Query by Path ---
+        JPanel pathPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        pathPanel.add(new JLabel("Path contains:"));
+        pathPanel.add(txtPath);
+        JButton btnQueryPath = new JButton("Run Query");
+        btnQueryPath.addActionListener(e -> onPathQueryClicked());
+        pathPanel.add(btnQueryPath);
+        tabs.addTab("By Path", pathPanel);
+
+        return tabs;
+    }
+
+    /**
+     * Builds the bottom action bar containing the Export, Email,
+     * Clear Database, and Return buttons.
+     *
+     * @param export  the "Export to CSV" button
+     * @param email   the "Email Results" button
+     * @param clear   the "Clear Database" button
+     * @param back    the "Return to Main" button
+     * @return a laid-out panel for the south region of the form
+     */
+    private JPanel buildActionPanel(final JButton export, final JButton email,
+                                    final JButton clear, final JButton back) {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 8));
+        panel.add(export);
+        panel.add(email);
+        panel.add(clear);
+        panel.add(back);
+        return panel;
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    //  COMPONENT FACTORY HELPERS
+    // ═════════════════════════════════════════════════════════════
+
+    /**
+     * Creates the extension combo box pre-populated with the most common
+     * file types from the SRS.  The combo box is editable so users can
+     * type any extension they need.
+     *
+     * @return a ready-to-use {@link JComboBox} of extension strings
+     */
+    private JComboBox<String> createExtensionComboBox() {
+        JComboBox<String> combo = new JComboBox<>(DEFAULT_EXTENSIONS);
+        combo.setEditable(true);
+        return combo;
+    }
+
+    /**
+     * Creates a date spinner configured with a calendar-style editor.
+     * The spinner defaults to today's date and lets the user pick any
+     * date by clicking the up/down arrows or typing directly.
+     *
+     * @return a {@link JSpinner} backed by a {@link SpinnerDateModel}
+     */
+    private JSpinner createDateSpinner() {
+        SpinnerDateModel model = new SpinnerDateModel();
+        JSpinner spinner = new JSpinner(model);
+        spinner.setEditor(new JSpinner.DateEditor(spinner, "yyyy-MM-dd HH:mm"));
+        return spinner;
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    //  QUERY EVENT HANDLERS
+    // ═════════════════════════════════════════════════════════════
+
+    /**
+     * Handles the "Run Query" action on the Extension tab.
+     *
+     * <p>Reads the selected or typed extension from {@link #cmbExtension},
+     * passes it to {@link QueryEngine#queryByExtension(String)}, and
+     * refreshes the results table.  Shows an error dialog if the input
+     * is blank or the query engine rejects it.</p>
+     */
+    private void onExtensionQueryClicked() {
+        String ext = (String) cmbExtension.getSelectedItem();
+        if (ext == null || ext.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Please select or type a file extension.",
+                    "Missing Input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            List<FileEvent> results = queryEngine.queryByExtension(ext.trim());
+            displayResults(results);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Query Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Handles the "Run Query" action on the Date Range tab.
+     *
+     * <p>Converts the two spinner values into {@link LocalDateTime} objects
+     * and delegates to {@link QueryEngine#queryByDateRange(LocalDateTime, LocalDateTime)}.
+     * The query engine validates that the start date is not after the end date;
+     * any validation failure is shown to the user in an error dialog.</p>
+     */
+    private void onDateRangeQueryClicked() {
+        // Convert the java.util.Date from the spinner into LocalDateTime.
+        // We extract just the date part and assume midnight boundaries
+        // unless the user explicitly chose a time.
+        java.util.Date startRaw = (java.util.Date) spnStartDate.getValue();
+        java.util.Date endRaw = (java.util.Date) spnEndDate.getValue();
+
+        LocalDateTime start = new java.sql.Timestamp(startRaw.getTime())
+                .toLocalDateTime();
+        LocalDateTime end = new java.sql.Timestamp(endRaw.getTime())
+                .toLocalDateTime();
+
+        try {
+            List<FileEvent> results = queryEngine.queryByDateRange(start, end);
+            displayResults(results);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Query Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Handles the "Run Query" action on the Activity tab.
+     *
+     * <p>Reads the selected activity type (CREATED, MODIFIED, DELETED,
+     * or RENAMED) from {@link #cmbActivity} and passes it to
+     * {@link QueryEngine#queryByActivity(String)}.</p>
+     */
+    private void onActivityQueryClicked() {
+        String activity = (String) cmbActivity.getSelectedItem();
+        if (activity == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Please select an activity type.",
+                    "Missing Input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            List<FileEvent> results = queryEngine.queryByActivity(activity);
+            displayResults(results);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Query Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Handles the "Run Query" action on the Path tab.
+     *
+     * <p>Reads the user-entered path fragment from {@link #txtPath} and
+     * delegates to {@link QueryEngine#queryByPath(String)}.  The query
+     * engine wraps the term in SQL LIKE wildcards internally.</p>
+     */
+    private void onPathQueryClicked() {
+        String path = txtPath.getText();
+        if (path == null || path.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a path or part of a path to search.",
+                    "Missing Input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            List<FileEvent> results = queryEngine.queryByPath(path.trim());
+            displayResults(results);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Query Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    //  ACTION-BAR EVENT HANDLERS
+    // ═════════════════════════════════════════════════════════════
+
+    /**
+     * Prompts the user for a file name and exports the current query
+     * results to a CSV file through {@link QueryEngine#saveResultsToCsv(String)}.
+     *
+     * <p>On success the {@link #btnEmailResults} button is enabled so the
+     * user can immediately email the generated file.  If the export fails
+     * (I/O error, empty results, etc.) an error dialog is shown.</p>
+     */
+    private void onExportCsvClicked() {
+        String fileName = JOptionPane.showInputDialog(this,
+                "Enter the CSV file name:",
+                "Export to CSV", JOptionPane.PLAIN_MESSAGE);
+
+        if (fileName == null || fileName.trim().isEmpty()) {
+            // User cancelled the dialog or left it blank — do nothing.
+            return;
+        }
+
+        try {
+            File csv = queryEngine.saveResultsToCsv(fileName.trim());
+            if (csv != null) {
+                lastExportedCsv = csv;
+                btnEmailResults.setEnabled(true);
+                JOptionPane.showMessageDialog(this,
+                        "Results exported to: " + csv.getAbsolutePath(),
+                        "Export Successful", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Export failed. Check file permissions and try again.",
+                        "Export Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IllegalArgumentException | IllegalStateException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Export Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Prompts the user for an email address and sends the last exported
+     * CSV file as an attachment through {@link QueryEngine#emailResults(String, File)}.
+     *
+     * <p>This button is only enabled after a successful CSV export, so
+     * {@link #lastExportedCsv} is guaranteed to be non-null when we
+     * reach this handler.</p>
+     */
+    private void onEmailResultsClicked() {
+        if (lastExportedCsv == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Please export to CSV first before emailing.",
+                    "No CSV Available", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String recipient = JOptionPane.showInputDialog(this,
+                "Enter the recipient email address:",
+                "Email Results", JOptionPane.PLAIN_MESSAGE);
+
+        if (recipient == null || recipient.trim().isEmpty()) {
+            return;
+        }
+
+        try {
+            boolean sent = queryEngine.emailResults(recipient.trim(), lastExportedCsv);
+            if (sent) {
+                JOptionPane.showMessageDialog(this,
+                        "Report emailed successfully to " + recipient.trim(),
+                        "Email Sent", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Failed to send email. Verify that the email service is configured.",
+                        "Email Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Email Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Asks for confirmation and then clears every record from the database
+     * via {@link QueryEngine#clearDatabase()}.
+     *
+     * <p>Because this operation is irreversible, a YES/NO confirmation
+     * dialog is shown first.  On success the results table is also
+     * cleared so the UI stays consistent with the now-empty database.</p>
+     */
+    private void onClearDatabaseClicked() {
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "This will permanently delete all stored file events.\n"
+                        + "Are you sure you want to clear the database?",
+                "Confirm Clear Database", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        boolean cleared = queryEngine.clearDatabase();
+        if (cleared) {
+            tableModel.setRowCount(0);
+            btnExportCsv.setEnabled(false);
+            btnEmailResults.setEnabled(false);
+            lastExportedCsv = null;
+            JOptionPane.showMessageDialog(this,
+                    "Database cleared successfully.",
+                    "Database Cleared", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Failed to clear the database.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Disposes the QueryForm window and returns focus to the MainForm.
+     * Called by the "Return to Main" button and by the window-close event.
+     */
+    private void onReturnToMainClicked() {
+        dispose();
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    //  RESULTS TABLE HELPER
+    // ═════════════════════════════════════════════════════════════
+
+    /**
+     * Clears the results table and repopulates it with the given list of
+     * {@link FileEvent} objects.
+     *
+     * <p>Each event is rendered as a single row with five columns matching
+     * {@link #TABLE_COLUMNS}.  After populating, the method updates the
+     * Export button state and shows a "no results" message if the list
+     * is empty.</p>
+     *
+     * @param events the query results to display; may be empty but not null
+     */
+    private void displayResults(final List<FileEvent> events) {
+        // Wipe previous results so old data never lingers on screen
+        tableModel.setRowCount(0);
+
+        for (FileEvent event : events) {
+            tableModel.addRow(new Object[]{
+                    event.getFileName(),
+                    event.getExtension(),
+                    event.getPath(),
+                    event.getActivityType(),
+                    event.getTimeStamp().format(DISPLAY_FORMAT)
+            });
+        }
+
+        // Only allow CSV export when there is something to export
+        btnExportCsv.setEnabled(!events.isEmpty());
+
+        // Reset email state because the old CSV no longer matches these results
+        btnEmailResults.setEnabled(false);
+        lastExportedCsv = null;
+
+        if (events.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "No matching events found for this query.",
+                    "Query Results", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+}
