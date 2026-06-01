@@ -18,14 +18,14 @@ public class ReportGenerator {
     }
 
     public void exportToCsv(List<FileEvent> events, String fileName) throws IOException {
-    // step 1 - create header
+        // step 1 - create header
         String header = "File Name,Extension,Path,Activity,Date/Time\n";
 
-    // step 2 and 3 - write to file
-        FileWriter fw = new FileWriter(fileName);
-        fw.write(header);
-        fw.write(formatToTable(events));
-        fw.close();
+        // step 2 and 3 - write to file using try-with-resources to ensure it always closes
+        try (FileWriter fw = new FileWriter(fileName)) {
+            fw.write(header);
+            fw.write(formatToTable(events));
+        }
     }
 
     public String buildHeader(String queryType, String queryParam) {

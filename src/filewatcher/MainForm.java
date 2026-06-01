@@ -21,6 +21,7 @@ public class MainForm extends JFrame {
     // Logic
     private FileWatcher fileWatcher;
     private final DatabaseHandler databaseHandler;
+    private final QueryEngine queryEngine;
 
     // constructor
     public MainForm() {
@@ -97,6 +98,7 @@ public class MainForm extends JFrame {
             JOptionPane.showMessageDialog(null, "Failed to connect to database.");
         }
         databaseHandler.createTableIfNotExists();
+        queryEngine = new QueryEngine(databaseHandler, new ReportGenerator(), new EmailService());
 
         // step 10 - show window
         setLocationRelativeTo(null);
@@ -127,7 +129,7 @@ public class MainForm extends JFrame {
         JMenuItem writeItem = new JMenuItem("Write to Database");
         JMenuItem queryItem = new JMenuItem("Query");
         writeItem.addActionListener(e -> writeToDatabase());
-        queryItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Query window coming soon."));
+        queryItem.addActionListener(e -> new QueryDialog(this, queryEngine));
         dbMenu.add(writeItem);
         dbMenu.add(queryItem);
 
@@ -217,7 +219,7 @@ public class MainForm extends JFrame {
         }
 
         int saved = databaseHandler.saveEvents(fileWatcher.getPendingEvents());
-        fileWatcher.getPendingEvents().clear();
+        fileWatcher.clearPendingEvents();
         btnWriteDB.setEnabled(false);
         JOptionPane.showMessageDialog(this, saved + " event(s) saved to database.");
     }

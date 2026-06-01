@@ -4,6 +4,7 @@ import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 public class FileWatcher {
 
 
@@ -30,6 +31,10 @@ public class FileWatcher {
     public boolean hasUnsavedEvents() {
         return !pendingEvents.isEmpty();
     }
+    public void clearPendingEvents() {
+        pendingEvents.clear();
+    }
+
     public void stopMonitoring() throws IOException {
         isActive = false;
         if (watcher != null) {
@@ -45,11 +50,17 @@ public class FileWatcher {
                 StandardWatchEventKinds.ENTRY_MODIFY,
                 StandardWatchEventKinds.ENTRY_DELETE);
 
-// step 3 - set active
+        // step 3 - set active
         isActive = true;
         // step 4 - keep watching while active
         while (isActive) {
-            WatchKey key = watcher.poll();
+            WatchKey key;
+            try {
+                key = watcher.poll(500, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+                break;
+            }
             if (key == null) continue;
 
             // step 5 - process each event found

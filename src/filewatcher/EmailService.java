@@ -134,6 +134,15 @@ public class EmailService {
      *         {@code false} if an error occurred
      */
     public boolean sendEmail(final String recipient, final File attachment) {
+        // validate inputs before attempting to send
+        if (recipient == null || recipient.trim().isEmpty()) {
+            System.err.println("sendEmail: recipient is null or empty.");
+            return false;
+        }
+        if (attachment == null || !attachment.exists()) {
+            System.err.println("sendEmail: attachment is null or does not exist.");
+            return false;
+        }
         try {
             // STEP 1 - get the authenticated Gmail session
             Session session = authenticate();
