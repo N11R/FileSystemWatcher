@@ -98,5 +98,19 @@ Team Members:
   IDE Used: IntelliJ IDEA
   Nasra Hussein:
 This week I focused on improving the usability of the QueryForm interface. I added descriptive tooltips to every control; combo boxes, spinners, text fields, and buttons, using setToolTipText() so users can understand each control's purpose at a glance. I implemented keyboard shortcuts on all action buttons (Alt+R to Run Query, Alt+E to Export, Alt+M to Email, Alt+C to Clear, and Alt+B to go Back), along with tab-switching shortcuts (Alt+1 through Alt+4) so the form can be operated quickly without a mouse. To make actions more recognizable, I added Unicode icons to the buttons (▶ Run Query, 📄 Export, ✉ Email, 🗑 Clear, ↩ Return). I also enabled column sorting so that clicking any column header sorts the results table (setAutoCreateRowSorter(true)), and added a status bar at the bottom of the form that displays the result count (e.g. "Found 12 result(s)") to give users immediate feedback instead of relying solely on a popup dialog. Note that opening QueryForm depends on MainForm being wired up to call openQueryForm(), which is handled separately by the MainForm owner.
+
+
+
   Mariam Hussein:
+  1. BUG FIX: FileWatcher.java — CPU Busy-Wait.
+The startMonitoring() loop was calling watcher.poll() with no delay, causing the background thread to spin at 100% CPU while waiting for file events. Fixed by replacing poll() with poll(500, TimeUnit.MILLISECONDS) so the thread sleeps betweenchecks. Also added InterruptedException handling to allow the thread to shut down cleanly when interrupted. Added a new clearPendingEvents() method to properly encapsulate clearing the pending events list rather than exposing the list directly.
+ 
+  2. BUG FIX: ReportGenerator.java — FileWriter Resource Leak.The exportToCsv() method created a FileWriter but did not use try-with resources, meaning the file handle could be left open if an exception occurred during writing. Fixed by wrapping theFileWriter in a try-with-resources block so it always closes correctly regardless of whether an exception is thrown.
+ 
+  3. BUG FIX: EmailService.java — Null Input Validation.
+The sendEmail() method was missing input validation before the try block. If a null or blank recipient, or a null/missing file was passed in, the method would throw an exception instead of returning false cleanly. Fixed by adding early return checks at the top of the method before any sending logic is attempted. This ensures all EmailServiceTest validation tests pass correctly.
+ 
+4. ENHANCEMENT: MainForm.java — Integration and Polish
+Updated MainForm to initialize a QueryEngine instance at startup using the existing DatabaseHandler, ReportGenerator, and EmailService. Wired the Database > Query menu item to open Nasra's QueryForm window (previously showed a "coming soon" placeholder). Replaced the direct call to fileWatcher.getPendingEvents().clear() with the new fileWatcher.clearPendingEvents() method for better encapsulation.
+ 
   
