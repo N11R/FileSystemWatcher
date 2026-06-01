@@ -89,4 +89,14 @@ Updated MainForm.java — added email send button and wired it to EmailService
 Updated Main.java — added SQLite driver loading on startup
 
   
-   
+   --Fifth Iteration--
+
+Team Members:
+- Mariam Hussein (mah01@uw.edu)
+- Nasra Hussein (nasraali@uw.edu)
+
+  IDE Used: IntelliJ IDEA
+  Nasra Hussein:
+This week I focused on improving the usability of the QueryForm interface. I added descriptive tooltips to every control; combo boxes, spinners, text fields, and buttons, using setToolTipText() so users can understand each control's purpose at a glance. I implemented keyboard shortcuts on all action buttons (Alt+R to Run Query, Alt+E to Export, Alt+M to Email, Alt+C to Clear, and Alt+B to go Back), along with tab-switching shortcuts (Alt+1 through Alt+4) so the form can be operated quickly without a mouse. To make actions more recognizable, I added Unicode icons to the buttons (▶ Run Query, 📄 Export, ✉ Email, 🗑 Clear, ↩ Return). I also enabled column sorting so that clicking any column header sorts the results table (setAutoCreateRowSorter(true)), and added a status bar at the bottom of the form that displays the result count (e.g. "Found 12 result(s)") to give users immediate feedback instead of relying solely on a popup dialog. Note that opening QueryForm depends on MainForm being wired up to call openQueryForm(), which is handled separately by the MainForm owner.
+  Mariam Hussein:
+  
