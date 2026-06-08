@@ -129,7 +129,7 @@ public class MainForm extends JFrame {
         JMenuItem writeItem = new JMenuItem("Write to Database");
         JMenuItem queryItem = new JMenuItem("Query");
         writeItem.addActionListener(e -> writeToDatabase());
-        queryItem.addActionListener(e -> new QueryDialog(this, queryEngine));
+        queryItem.addActionListener(e -> new QueryForm(queryEngine));
         dbMenu.add(writeItem);
         dbMenu.add(queryItem);
 
