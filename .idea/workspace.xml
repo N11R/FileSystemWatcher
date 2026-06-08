@@ -4,37 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jakarta_mail_2_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_api.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_api1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_engine.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_platform_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_45_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sun_activation_jakarta.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/xerial_sqlite_jdbc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="lib">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta_mail_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_45_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FileSystemWatcher.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileSystemWatcher.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filewatcher.db" beforeDir="false" afterPath="$PROJECT_DIR$/filewatcher.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/EmailService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/FileWatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/FileWatcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filewatcher.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/FileSystemWatcher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/FileSystemWatcher.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/ReportGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/ReportGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/DatabaseHandlerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/EmailServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/FileEventTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/FileWatcherTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/QueryEngineTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/ReportGeneratorTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/QueryDialog$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/Querydialogtest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/DatabaseHandlerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/EmailServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/FileEventTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/FileWatcherTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/QueryEngineTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/QueryFormTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/ReportGeneratorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileSystemWatcher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileSystemWatcher.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filewatcher/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/ReportGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/ReportGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +55,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/N11R/FileSystemWatcher.git&quot;,
-    &quot;accountId&quot;: &quot;630ad5e6-05c6-42af-bb1f-24af51e160a3&quot;
+    &quot;accountId&quot;: &quot;5d1710f1-a517-4815-b104-6fdea31cabba&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -76,31 +66,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.QueryDialogTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/mariamhussein/IdeaProjects/FileSystemWatcher",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.47454843",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.DatabaseHandlerTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.EmailServiceTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.FileEventTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.QueryDialogTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QueryEngineTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.QueryFormTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mariamhussein/IdeaProjects/FileSystemWatcher&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/nj11r/Desktop/Intelli J/FileSystemWatcher/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.47454843&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -124,10 +123,51 @@
       <workItem from="1780275304758" duration="308000" />
       <workItem from="1780275615858" duration="1161000" />
       <workItem from="1780276836673" duration="1560000" />
+      <workItem from="1780289045412" duration="2349000" />
+      <workItem from="1780878965140" duration="1147000" />
+      <workItem from="1780960853215" duration="506000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryFormTest.ic" NAME="QueryFormTest Coverage Results" MODIFIED="1780879391099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$EmailServiceTest.ic" NAME="EmailServiceTest Coverage Results" MODIFIED="1780879359065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$DatabaseHandlerTest.ic" NAME="DatabaseHandlerTest Coverage Results" MODIFIED="1780879319820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$FileEventTest.ic" NAME="FileEventTest Coverage Results" MODIFIED="1780879458100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryEngineTest.ic" NAME="QueryEngineTest Coverage Results" MODIFIED="1780879429967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
