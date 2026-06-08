@@ -66,8 +66,12 @@ public class FileWatcher {
             // step 5 - process each event found
             for (WatchEvent<?> event : key.pollEvents()) {
                 String fileName = event.context().toString();
-                String activityType = event.kind().name();
-
+                String activityType = switch (event.kind().name()) {
+                    case "ENTRY_CREATE" -> "CREATED";
+                    case "ENTRY_MODIFY" -> "MODIFIED";
+                    case "ENTRY_DELETE" -> "DELETED";
+                    default -> event.kind().name();
+                };
                 // only process if extension matches
                 if (extensionFilter == null ||
                         fileName.endsWith(extensionFilter)) {

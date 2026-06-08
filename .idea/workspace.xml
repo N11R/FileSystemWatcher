@@ -4,27 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="lib">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta_mail_2_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_45_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FileSystemWatcher.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filewatcher.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/FileSystemWatcher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/FileSystemWatcher.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/QueryDialog$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/FileSystemWatcher/filewatcher/Querydialogtest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/DatabaseHandlerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/EmailServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/FileEventTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/FileWatcherTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/QueryEngineTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/QueryFormTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/filewatcher/ReportGeneratorTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileSystemWatcher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileSystemWatcher.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filewatcher/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/MainForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/filewatcher/QueryEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/QueryEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +39,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/N11R/FileSystemWatcher.git&quot;,
-    &quot;accountId&quot;: &quot;5d1710f1-a517-4815-b104-6fdea31cabba&quot;
+    &quot;accountId&quot;: &quot;630ad5e6-05c6-42af-bb1f-24af51e160a3&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -70,20 +54,13 @@
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.DatabaseHandlerTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.EmailServiceTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.FileEventTest.executor&quot;: &quot;Coverage&quot;,
     &quot;JUnit.QueryDialogTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.QueryEngineTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.QueryFormTest.executor&quot;: &quot;Coverage&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/mariamhussein/IdeaProjects/FileSystemWatcher&quot;,
@@ -92,11 +69,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/nj11r/Desktop/Intelli J/FileSystemWatcher/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.47454843&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -122,52 +97,35 @@
       <workItem from="1780275131256" duration="171000" />
       <workItem from="1780275304758" duration="308000" />
       <workItem from="1780275615858" duration="1161000" />
-      <workItem from="1780276836673" duration="1560000" />
-      <workItem from="1780289045412" duration="2349000" />
-      <workItem from="1780878965140" duration="1147000" />
-      <workItem from="1780960853215" duration="506000" />
+      <workItem from="1780276836673" duration="2647000" />
+      <workItem from="1780548624261" duration="111000" />
+      <workItem from="1780548865104" duration="1020000" />
     </task>
+    <task id="LOCAL-00001" summary=".">
+      <option name="closed" value="true" />
+      <created>1780279798105</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1780279798105</updated>
+    </task>
+    <task id="LOCAL-00002" summary="created querydialog and querydialogtest">
+      <option name="closed" value="true" />
+      <created>1780279854408</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1780279854408</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryFormTest.ic" NAME="QueryFormTest Coverage Results" MODIFIED="1780879391099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$EmailServiceTest.ic" NAME="EmailServiceTest Coverage Results" MODIFIED="1780879359065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$DatabaseHandlerTest.ic" NAME="DatabaseHandlerTest Coverage Results" MODIFIED="1780879319820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$FileEventTest.ic" NAME="FileEventTest Coverage Results" MODIFIED="1780879458100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryEngineTest.ic" NAME="QueryEngineTest Coverage Results" MODIFIED="1780879429967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
-  </component>
-  <component name="github-copilot-workspace">
-    <instructionFileLocations>
-      <option value=".github/instructions" />
-      <option value=".github/instructions" />
-    </instructionFileLocations>
-    <promptFileLocations>
-      <option value=".github/prompts" />
-      <option value=".github/prompts" />
-    </promptFileLocations>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <MESSAGE value="created querydialog and querydialogtest" />
+    <option name="LAST_COMMIT_MESSAGE" value="created querydialog and querydialogtest" />
   </component>
 </project>
