@@ -112,5 +112,49 @@ The sendEmail() method was missing input validation before the try block. If a n
  
 4. ENHANCEMENT: MainForm.java — Integration and Polish
 Updated MainForm to initialize a QueryEngine instance at startup using the existing DatabaseHandler, ReportGenerator, and EmailService. Wired the Database > Query menu item to open Nasra's QueryForm window (previously showed a "coming soon" placeholder). Replaced the direct call to fileWatcher.getPendingEvents().clear() with the new fileWatcher.clearPendingEvents() method for better encapsulation.
- 
+
+
+ --Sixth Iteration--
+
+Team Members:
+- Mariam Hussein (mah01@uw.edu)
+- Nasra Hussein (nasraali@uw.edu)
+
+IDE Used: IntelliJ IDEA
+
+Nasra Hussein:
+This week I focused on final test verification and the UML class diagram in
+preparation for the project presentation.
+
+Test Verification:
+I ran the full JUnit 5 test suite for the components I am responsible for and
+confirmed all tests pass with no failures or errors:
+- DatabaseHandlerTest — 24 tests passed (543 ms). Covers saving single and batch
+  events, fetch-by-extension, fetch-by-date-range, fetch-by-activity,
+  fetch-by-path (match and no-match cases), clearing the database, connection
+  open/close, special-character handling, and empty-database queries.
+- QueryEngineTest — 30 tests passed (451 ms). Covers all four query types,
+  result/metadata caching, input validation (null/blank/empty), CSV export,
+  email-result validation, and clear-database behavior.
+- QueryFormTest — 5 tests passed (1.878 s). Covers form construction, window
+  title, visibility after construction, null-engine rejection, and clean
+  disposal.
+- FileEventTest — 7 tests passed (14 ms). Covers all getters, toString(), and
+  getAsCsvRow().
+Total: 66 tests passing across the four suites. I also confirmed that the red
+"restricted method / native access" messages in the run output are benign JDK
+warnings emitted when the SQLite JDBC driver loads, and do not affect test
+results. Screenshots of each green run were captured for the presentation slides.
+
+UML Class Diagram:
+I authored the final UML class diagram in PlantUML, reflecting the final code
+base. It includes all classes (Main, MainForm, QueryForm, AboutDialog,
+QueryEngine, FileWatcher, DatabaseHandler, ReportGenerator, EmailService,
+FileEvent) grouped into the View, Controller/Service, and Model layers to show
+the MVC structure. Relationships use formal notation — composition for owned
+objects (MainForm–FileWatcher, FileWatcher–FileEvent), aggregation for the
+injected services (QueryEngine–DatabaseHandler/ReportGenerator/EmailService),
+and dependencies for transient uses. Both team members' names appear in the
+diagram title and footer. The diagram was rendered and exported for inclusion
+in the slide deck.
   
