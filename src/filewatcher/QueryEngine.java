@@ -167,8 +167,7 @@ public class QueryEngine {
         if (path == null || path.trim().isEmpty()) {
             throw new IllegalArgumentException("Path cannot be null or empty.");
         }
-        final String likePath = "%" + path.trim() + "%";
-        lastQueryResults = dbHandler.fetchByPath(likePath);
+        lastQueryResults = dbHandler.fetchByPath(path.trim());
         lastQueryMeta = "Query Type: Path | Parameter: " + path.trim();
         return lastQueryResults;
     }
