@@ -1,4 +1,83 @@
-# File System Watcher Project
+# File System Watcher
+
+TCSS 360 — University of Washington Tacoma
+Authors: Mariam Hussein & Nasra Hussein
+
+## Overview
+A desktop application that monitors a directory for file system events
+(create, modify, delete), logs them to a SQLite database, lets the user
+query the log by extension / date range / activity / path, export results
+to CSV, and email the CSV report via Gmail.
+
+## Requirements
+- Java JDK 21 or newer (developed on OpenJDK 25)
+- IntelliJ IDEA (project includes .iml files)
+- The following libraries on the classpath (in /lib or via your IDE):
+  - sqlite-jdbc (SQLite JDBC driver)
+  - jakarta.mail and its dependencies (for the email feature)
+
+## How to Run (IntelliJ)
+1. Open the project folder in IntelliJ IDEA.
+2. Confirm the SQLite JDBC and Jakarta Mail JARs are added as libraries
+   (File > Project Structure > Libraries). They are in the /lib folder.
+3. Set the project SDK to JDK 21+ (File > Project Structure > Project).
+4. Locate Main.java (package filewatcher) and run its main() method.
+5. The File System Watcher window opens.
+
+## How to Use
+1. Enter a directory path to monitor and select a file extension
+   (or "All Files").
+2. Click Start to begin monitoring. File events appear in the list in
+   real time.
+3. Click Write to DB to save the captured events to the database.
+4. Click Stop to stop monitoring.
+5. Open Database > Query to search the log. Run any of the four query
+   types, view results in the table, Export to CSV, or Email the CSV.
+
+## Email Setup (required for the email feature only)
+The email feature reads credentials from a config.properties file in the
+project working directory. Create config.properties with:
+
+    email=youraddress@gmail.com
+    password=your-16-char-gmail-app-password
+
+Use a Gmail App Password (Google Account > Security > App Passwords), not
+your normal account password. The file is excluded from version control.
+
+## How to Run the Tests
+
+The project uses JUnit 5.
+
+1. In IntelliJ, right-click the test source folder and choose
+
+   "Run All Tests", OR run each test class individually:
+   - DatabaseHandlerTest (24 tests)
+   - QueryEngineTest (30 tests)
+   - QueryFormTest (5 tests)
+   - FileEventTest (7 tests)
+   - FileWatcherTest(4 tests)
+   - ReportGeneratorTest(11 tests)
+   - EmailServiceTest
+
+2. All model/controller tests should pass.
+Note: When tests run, the SQLite driver prints JDK warnings about
+"restricted method" / "native access". These are harmless and do not
+affect test results.
+
+
+## Project Structure
+- Main.java — application entry point
+- MainForm.java / QueryForm.java / AboutDialog.java — Swing GUI (View)
+- QueryEngine.java — service/controller layer
+- FileWatcher.java — directory monitoring
+- DatabaseHandler.java — SQLite persistence
+- ReportGenerator.java — CSV formatting/export
+- EmailService.java — Gmail SMTP delivery
+- FileEvent.java — data model
+- *Test.java — JUnit 5 test suites
+
+
+
 
 --First Iteration--
 
