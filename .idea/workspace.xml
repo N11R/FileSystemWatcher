@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="">
+    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/QueryEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/QueryEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +97,7 @@
       <workItem from="1780276836673" duration="2647000" />
       <workItem from="1780548624261" duration="111000" />
       <workItem from="1780548865104" duration="1020000" />
+      <workItem from="1780879590912" duration="1850000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -117,15 +115,50 @@
       <option name="project" value="LOCAL" />
       <updated>1780279854408</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="remove unused likePath variable in queryByPath">
+      <option name="closed" value="true" />
+      <created>1780879718445</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1780879718445</updated>
+    </task>
+    <task id="LOCAL-00004" summary="map ENTRY_CREATE/MODIFY/DELETE to friendly activity names">
+      <option name="closed" value="true" />
+      <created>1780879761284</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780879761284</updated>
+    </task>
+    <task id="LOCAL-00005" summary="replace QueryDialog reference with QueryForm">
+      <option name="closed" value="true" />
+      <created>1780879775758</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780879775758</updated>
+    </task>
+    <task id="LOCAL-00006" summary=".">
+      <option name="closed" value="true" />
+      <created>1780879785869</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780879785869</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="." />
     <MESSAGE value="created querydialog and querydialogtest" />
-    <option name="LAST_COMMIT_MESSAGE" value="created querydialog and querydialogtest" />
+    <MESSAGE value="remove unused likePath variable in queryByPath" />
+    <MESSAGE value="map ENTRY_CREATE/MODIFY/DELETE to friendly activity names" />
+    <MESSAGE value="replace QueryDialog reference with QueryForm" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
