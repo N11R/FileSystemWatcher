@@ -199,6 +199,12 @@ public class EmailService {
             // handles file attachment error (FR-5.7)
             System.err.println("Failed to attach file: " + e.getMessage());
             return false;
+
+        } catch (Error e) {
+            // handles missing dependency
+            System.err.println("Failed to send email due to missing dependency: "
+                    + e.getMessage());
+            return false;
         }
     }
 }

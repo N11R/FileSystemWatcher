@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/QueryForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/QueryForm.java" afterDir="false" />
-    </list>
+    <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +50,7 @@
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.DatabaseHandlerTest.executor": "Run",
-    "JUnit.EmailServiceTest.executor": "Run",
+    "JUnit.EmailServiceTest.executor": "Coverage",
     "JUnit.FileWatcherTest.executor": "Run",
     "JUnit.QueryDialogTest.executor": "Run",
     "JUnit.QueryFormTest.executor": "Coverage",
@@ -134,11 +128,32 @@
     <MESSAGE value="created querydialog and querydialogtest" />
     <option name="LAST_COMMIT_MESSAGE" value="created querydialog and querydialogtest" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/test/filewatcher/EmailServiceTest.java</url>
+          <line>28</line>
+          <properties field="emailService" class="filewatcher.EmailServiceTest" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryFormTest.ic" NAME="QueryFormTest Coverage Results" MODIFIED="1780961951110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$Main.ic" NAME="Main Coverage Results" MODIFIED="1780961922320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>filewatcher.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$EmailServiceTest.ic" NAME="EmailServiceTest Coverage Results" MODIFIED="1780961806964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$EmailServiceTest.ic" NAME="EmailServiceTest Coverage Results" MODIFIED="1780968681466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$FileEventTest.ic" NAME="FileEventTest Coverage Results" MODIFIED="1780879458100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryEngineTest.ic" NAME="QueryEngineTest Coverage Results" MODIFIED="1780879429967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryFormTest.ic" NAME="QueryFormTest Coverage Results" MODIFIED="1780961951110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>filewatcher.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/FileSystemWatcher$FileWatcherTest.ic" NAME="FileWatcherTest Coverage Results" MODIFIED="1780961969463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
@@ -147,16 +162,7 @@
     <SUITE FILE_PATH="coverage/FileSystemWatcher$ReportGeneratorTest.ic" NAME="ReportGeneratorTest Coverage Results" MODIFIED="1780961942455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>filewatcher.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$FileEventTest.ic" NAME="FileEventTest Coverage Results" MODIFIED="1780879458100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/FileSystemWatcher$DatabaseHandlerTest.ic" NAME="DatabaseHandlerTest Coverage Results" MODIFIED="1780962056327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryEngineTest.ic" NAME="QueryEngineTest Coverage Results" MODIFIED="1780879429967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>filewatcher.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/FileSystemWatcher$Main.ic" NAME="Main Coverage Results" MODIFIED="1780961922320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>filewatcher.*</FILTER>
     </SUITE>
   </component>
