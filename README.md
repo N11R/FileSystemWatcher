@@ -26,13 +26,41 @@ to CSV, and email the CSV report via Gmail.
 
 ## How to Use
 1. Enter a directory path to monitor and select a file extension
-   (or "All Files").
-2. Click Start to begin monitoring. File events appear in the list in
-   real time.
-3. Click Write to DB to save the captured events to the database.
-4. Click Stop to stop monitoring.
+   (or "All Files"). Tip: monitor a dedicated empty folder so events
+   are easy to see.
+2. Click Start (or press Cmd/Ctrl+S) to begin monitoring. File events
+   appear in the list in real time.
+3. Click Write to DB (or press Cmd/Ctrl+D) to save the captured events
+   to the database.
+4. Click Stop (or press Cmd/Ctrl+T) to stop monitoring.
 5. Open Database > Query to search the log. Run any of the four query
    types, view results in the table, Export to CSV, or Email the CSV.
+
+## Keyboard Shortcuts
+The application provides cross-platform keyboard shortcuts on its main
+action buttons. They use the platform's native menu-shortcut modifier:
+Command (Cmd) on macOS and Control (Ctrl) on Windows/Linux. Each button
+also displays its shortcut in the label and on hover (tooltip).
+
+Main window (MainForm):
+- Cmd/Ctrl+S — Start monitoring
+- Cmd/Ctrl+T — Stop monitoring
+- Cmd/Ctrl+D — Write captured events to the database
+
+Query window (QueryForm):
+- Cmd/Ctrl+R — Run Query (on the Extension tab)
+- Cmd/Ctrl+E — Export current results to CSV (enabled after a query)
+- Cmd/Ctrl+M — Email the exported CSV (enabled after an export)
+- Cmd/Ctrl+B — Return to the main window
+- Alt+1 / Alt+2 / Alt+3 / Alt+4 — Switch between the four query tabs
+
+Notes:
+- Shortcuts for disabled buttons do nothing (e.g. Stop before monitoring
+  has started, or Export before a query has been run) — this matches the
+  behavior of clicking the button.
+- Clear Database is intentionally click-only (no accelerator), since a
+  modifier+C shortcut would collide with the universal Copy shortcut and
+  the action is irreversible.
 
 ## Email Setup (required for the email feature only)
 The email feature reads credentials from a config.properties file in the
@@ -45,25 +73,21 @@ Use a Gmail App Password (Google Account > Security > App Passwords), not
 your normal account password. The file is excluded from version control.
 
 ## How to Run the Tests
-
 The project uses JUnit 5.
-
 1. In IntelliJ, right-click the test source folder and choose
-
    "Run All Tests", OR run each test class individually:
    - DatabaseHandlerTest (24 tests)
    - QueryEngineTest (30 tests)
    - QueryFormTest (5 tests)
    - FileEventTest (7 tests)
-   - FileWatcherTest(4 tests)
-   - ReportGeneratorTest(11 tests)
+   - FileWatcherTest (4 tests)
+   - ReportGeneratorTest (11 tests)
    - EmailServiceTest
-
 2. All model/controller tests should pass.
+
 Note: When tests run, the SQLite driver prints JDK warnings about
 "restricted method" / "native access". These are harmless and do not
 affect test results.
-
 
 ## Project Structure
 - Main.java — application entry point
@@ -76,6 +100,23 @@ affect test results.
 - FileEvent.java — data model
 - *Test.java — JUnit 5 test suites
 
+## Extra Features (Beyond Base Requirements)
+The following usability features go beyond the basic project specification:
+
+- Cross-platform keyboard shortcuts on all main action buttons, using the
+  native menu-shortcut modifier (Cmd on macOS, Ctrl on Windows/Linux), so
+  accelerators work correctly on every platform. See Keyboard Shortcuts below.
+- Shortcut hints shown directly in button labels and on hover (tooltips),
+  so users can discover the shortcuts without documentation.
+- Tooltips on every interactive control (fields, dropdowns, spinners,
+  buttons) explaining what each one does.
+- Sortable results table: clicking any column header in the query window
+  sorts the results by that column.
+- Status bar in the query window showing the result count after each query,
+  instead of interrupting the user with a popup for empty results.
+- Tabbed query interface that separates the four query types (extension,
+  date range, activity, path) into clean, uncluttered panels.
+- Thorough Javadoc with SRS requirement traceability throughout the codebase.
 
 
 
