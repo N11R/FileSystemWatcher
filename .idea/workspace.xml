@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="af770774-a38e-4279-b3fa-0aa079bfb327" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/FileWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FileSystemWatcher/filewatcher/MainForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filewatcher/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filewatcher/QueryEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/QueryEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/filewatcher/QueryForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/filewatcher/QueryForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,31 +51,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.QueryDialogTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mariamhussein/IdeaProjects/FileSystemWatcher&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.47454843&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.DatabaseHandlerTest.executor": "Run",
+    "JUnit.EmailServiceTest.executor": "Run",
+    "JUnit.FileWatcherTest.executor": "Run",
+    "JUnit.QueryDialogTest.executor": "Run",
+    "JUnit.QueryFormTest.executor": "Coverage",
+    "JUnit.ReportGeneratorTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/mariamhussein/IdeaProjects/FileSystemWatcher",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.47454843",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -127,5 +133,31 @@
     <MESSAGE value="." />
     <MESSAGE value="created querydialog and querydialogtest" />
     <option name="LAST_COMMIT_MESSAGE" value="created querydialog and querydialogtest" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryFormTest.ic" NAME="QueryFormTest Coverage Results" MODIFIED="1780961951110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$EmailServiceTest.ic" NAME="EmailServiceTest Coverage Results" MODIFIED="1780961806964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$FileWatcherTest.ic" NAME="FileWatcherTest Coverage Results" MODIFIED="1780961969463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$ReportGeneratorTest.ic" NAME="ReportGeneratorTest Coverage Results" MODIFIED="1780961942455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$FileEventTest.ic" NAME="FileEventTest Coverage Results" MODIFIED="1780879458100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$DatabaseHandlerTest.ic" NAME="DatabaseHandlerTest Coverage Results" MODIFIED="1780962056327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$QueryEngineTest.ic" NAME="QueryEngineTest Coverage Results" MODIFIED="1780879429967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/FileSystemWatcher$Main.ic" NAME="Main Coverage Results" MODIFIED="1780961922320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>filewatcher.*</FILTER>
+    </SUITE>
   </component>
 </project>

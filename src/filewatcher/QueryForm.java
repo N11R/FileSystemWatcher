@@ -3,13 +3,13 @@ package filewatcher;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -40,11 +40,15 @@ import java.util.List;
  *
  * <p><b>Extra Credit Features:</b></p>
  * <ul>
- *   <li>Keyboard shortcuts on all buttons (Alt+R, Alt+E, Alt+M, Alt+C, Alt+B)</li>
- *   <li>Tooltips on every interactive control</li>
- *   <li>Clickable column headers for sorting results</li>
- *   <li>Status bar showing result count instead of popup for empty results</li>
- *   <li>Full Javadoc with SRS traceability on all members</li>
+ *   <li>Cross-platform keyboard shortcuts on the main action buttons, using
+ *       the native menu-shortcut modifier (Command on macOS, Control on
+ *       Windows/Linux) so the accelerators fire reliably on every platform.</li>
+ *   <li>Tooltips on every interactive control, each showing the correct
+ *       platform-specific shortcut.</li>
+ *   <li>Clickable column headers for sorting results.</li>
+ *   <li>Status bar showing the result count instead of a popup for empty
+ *       results.</li>
+ *   <li>Full Javadoc with SRS traceability on all members.</li>
  * </ul>
  *
  * <p><b>SRS Coverage:</b></p>
@@ -60,7 +64,7 @@ import java.util.List;
  * </ul>
  *
  * @author  Nasra Hussein
- * @version 1.0
+ * @version 1.1
  * @see     QueryEngine
  * @see     MainForm
  * @see     FileEvent
@@ -89,6 +93,21 @@ public class QueryForm extends JFrame {
     /** Standard date-time display format used when rendering timestamps in the table. */
     private static final DateTimeFormatter DISPLAY_FORMAT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    /**
+     * The platform's native menu-shortcut modifier mask.
+     * Resolves to the Command key on macOS and the Control key on
+     * Windows/Linux, so accelerators always match user expectations.
+     */
+    private static final int MENU_MASK =
+            Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
+
+    /**
+     * Human-readable name of the shortcut modifier for the current platform.
+     * Used when building tooltip text (e.g. "Cmd+E" on macOS, "Ctrl+E" on Windows).
+     */
+    private static final String MOD_LABEL =
+            (MENU_MASK == InputEvent.META_DOWN_MASK) ? "Cmd" : "Ctrl";
 
     // ─────────────────────────────────────────────────────────────
     //  GUI COMPONENTS — Query Inputs
@@ -195,20 +214,26 @@ public class QueryForm extends JFrame {
         resultsTable.setAutoCreateRowSorter(true);
 
         // --- Action buttons along the bottom with icons and tooltips ---
+        // Export and Email get cross-platform accelerators (see bindShortcut).
+        // Clear Database is intentionally left click-only: it is destructive,
+        // and Cmd+C / Ctrl+C would collide with the universal "copy" shortcut.
         btnExportCsv = new JButton("\uD83D\uDCC4 Export to CSV");
-        btnExportCsv.setToolTipText("Save the current query results to a CSV file (Alt+E)");
+        btnExportCsv.setToolTipText(
+                "Save the current query results to a CSV file (" + MOD_LABEL + "+E)");
         btnExportCsv.setMnemonic(KeyEvent.VK_E);
 
         btnEmailResults = new JButton("\u2709 Email Results");
-        btnEmailResults.setToolTipText("Email the exported CSV file to a recipient (Alt+M)");
+        btnEmailResults.setToolTipText(
+                "Email the exported CSV file to a recipient (" + MOD_LABEL + "+M)");
         btnEmailResults.setMnemonic(KeyEvent.VK_M);
 
         JButton btnClearDb = new JButton("\uD83D\uDDD1 Clear Database");
-        btnClearDb.setToolTipText("Permanently delete all stored file events (Alt+C)");
+        btnClearDb.setToolTipText("Permanently delete all stored file events");
         btnClearDb.setMnemonic(KeyEvent.VK_C);
 
         JButton btnReturn = new JButton("\u21A9 Return to Main");
-        btnReturn.setToolTipText("Close this window and go back to the main form (Alt+B)");
+        btnReturn.setToolTipText(
+                "Close this window and go back to the main form (" + MOD_LABEL + "+B)");
         btnReturn.setMnemonic(KeyEvent.VK_B);
 
         // Disable export and email until the user actually runs a query
@@ -231,6 +256,14 @@ public class QueryForm extends JFrame {
         btnClearDb.addActionListener(e -> onClearDatabaseClicked());
         btnReturn.addActionListener(e -> dispose());
 
+        // --- Cross-platform keyboard accelerators (extra credit) ---
+        // Registered as window-level key bindings so they fire no matter
+        // which control currently has focus. The Swing mnemonics set above
+        // remain for the underlined-letter hints on Windows/Linux.
+        bindShortcut(btnExportCsv, KeyEvent.VK_E);
+        bindShortcut(btnEmailResults, KeyEvent.VK_M);
+        bindShortcut(btnReturn, KeyEvent.VK_B);
+
         // Closing the window should not terminate the whole application,
         // but we want to clean up nicely.
         addWindowListener(new WindowAdapter() {
@@ -246,6 +279,34 @@ public class QueryForm extends JFrame {
     }
 
     // ═════════════════════════════════════════════════════════════
+    //  KEYBOARD SHORTCUT HELPER (EXTRA CREDIT)
+    // ═════════════════════════════════════════════════════════════
+
+    /**
+     * Binds a keystroke to a button using the window's root pane, so the
+     * shortcut fires regardless of which component holds focus. Uses the
+     * native menu-shortcut modifier (Cmd on macOS, Ctrl on Windows/Linux).
+     *
+     * @param button  the button to activate when the keystroke is pressed
+     * @param keyCode the key to bind, e.g. KeyEvent.VK_S
+     */
+    private void bindShortcut(final JButton button, final int keyCode) {
+        final KeyStroke stroke = KeyStroke.getKeyStroke(keyCode, MENU_MASK);
+        final String actionKey = "mainform_action_" + keyCode;
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(stroke, actionKey);
+        getRootPane().getActionMap().put(actionKey, new AbstractAction() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                if (button.isEnabled()) {
+                    button.doClick();
+                }
+            }
+        });
+    }
+
+    // ═════════════════════════════════════════════════════════════
     //  PANEL BUILDERS — keep the constructor readable
     // ═════════════════════════════════════════════════════════════
 
@@ -254,9 +315,10 @@ public class QueryForm extends JFrame {
      * per query type (Extension, Date Range, Activity, Path).
      *
      * <p>Each tab contains the relevant input controls and a "Run Query"
-     * button with a keyboard shortcut (Alt+R).  This tabbed layout prevents
-     * the form from feeling cluttered while still exposing every query type
-     * on a single screen.</p>
+     * button.  The Extension tab's Run button also gets a cross-platform
+     * accelerator (Cmd/Ctrl+R).  This tabbed layout prevents the form from
+     * feeling cluttered while still exposing every query type on a single
+     * screen.</p>
      *
      * @return a fully wired panel ready to be added to the form
      */
@@ -269,8 +331,10 @@ public class QueryForm extends JFrame {
         extPanel.add(cmbExtension);
         JButton btnQueryExt = new JButton("\u25B6 Run Query");
         btnQueryExt.setMnemonic(KeyEvent.VK_R);
-        btnQueryExt.setToolTipText("Search for all events with this extension (Alt+R)");
+        btnQueryExt.setToolTipText(
+                "Search for all events with this extension (" + MOD_LABEL + "+R)");
         btnQueryExt.addActionListener(e -> onExtensionQueryClicked());
+        bindShortcut(btnQueryExt, KeyEvent.VK_R);
         extPanel.add(btnQueryExt);
         tabs.addTab("By Extension", extPanel);
 
@@ -306,7 +370,9 @@ public class QueryForm extends JFrame {
         pathPanel.add(btnQueryPath);
         tabs.addTab("By Path", pathPanel);
 
-        // Keyboard shortcuts for tab navigation
+        // Keyboard shortcuts for tab navigation (Alt+1..4 on Windows/Linux).
+        // Left as mnemonics; menu-modifier+digit would clash with OS/browser
+        // tab conventions on some platforms.
         tabs.setMnemonicAt(0, KeyEvent.VK_1);
         tabs.setMnemonicAt(1, KeyEvent.VK_2);
         tabs.setMnemonicAt(2, KeyEvent.VK_3);
@@ -319,15 +385,15 @@ public class QueryForm extends JFrame {
      * Builds the bottom section containing the action buttons and a status
      * label that shows how many results the last query returned.
      *
-     * @param export  the "Export to CSV" button
-     * @param email   the "Email Results" button
-     * @param clear   the "Clear Database" button
-     * @param back    the "Return to Main" button
+     * @param export the "Export to CSV" button
+     * @param email  the "Email Results" button
+     * @param clear  the "Clear Database" button
+     * @param back   the "Return to Main" button
      * @return a laid-out panel for the south region of the form
      */
     private JPanel buildBottomPanel(final JButton export, final JButton email,
                                     final JButton clear, final JButton back) {
-        // Use a vertical box layout to stack the button bar and the status label
+        // Stack the button bar above the status label using a BorderLayout.
         JPanel wrapper = new JPanel(new BorderLayout());
 
         JPanel buttonBar = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 8));
@@ -648,7 +714,8 @@ public class QueryForm extends JFrame {
         if (events.isEmpty()) {
             lblStatus.setText("No matching events found.");
         } else {
-            lblStatus.setText("Found " + events.size() + " result(s). Click column headers to sort.");
+            lblStatus.setText("Found " + events.size()
+                    + " result(s). Click column headers to sort.");
         }
     }
 }
